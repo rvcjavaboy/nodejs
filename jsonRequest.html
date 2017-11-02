@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery Demo</title>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<center>
+		<input type="text" id="msg">
+		<button id="send">Send Message</button>
+		<br><br><br><span id="server_response"><b></b></span>
+</center>
+</body>
+
+<script>
+	$(document).ready(function(){
+
+
+		$('#send').click(function(){
+
+			$.ajax({
+				type:'get',
+				url:'http:\\localhost:3000?msg='+$('#msg').val(),
+				success:function(data){
+					var json=JSON.parse(data);
+					$('#server_response').text(json.msg);
+					$('#server_response').css({'font-weight':'bold'});
+				},
+				error:function(){
+
+				}
+
+			});
+
+		});
+
+
+	});
+
+</script>
+</html>
